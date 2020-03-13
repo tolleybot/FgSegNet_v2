@@ -6,8 +6,8 @@ Created on Mon Jun 27 2018
 @author: longang
 """
 
-get_ipython().magic(u'load_ext autoreload')
-get_ipython().magic(u'autoreload 2')
+#get_ipython().magic(u'load_ext autoreload')
+#get_ipython().magic(u'autoreload 2')
 
 import numpy as np
 import tensorflow as tf
@@ -47,13 +47,16 @@ if keras.__version__!= '2.0.6' or tf.__version__!='1.1.0' or sys.version_info[0]
 def getData(train_dir, dataset_dir, scene):
     
     void_label = -1.
-    
+
+    print('training dir {}'.format(os.path.join(train_dir,'*.png')))
     Y_list = glob.glob(os.path.join(train_dir,'*.png'))
     
     if scene in ['CAVIAR2', 'Foliage']:
         ex = '*.jpg'
     else:
         ex = '*.png'
+
+    print(os.path.join(dataset_dir, ex))
         
     X_list = glob.glob(os.path.join(dataset_dir, ex))
     if len(Y_list)<=0 or len(X_list)<=0:
